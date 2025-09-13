@@ -16,7 +16,9 @@
 
 </div>
 
+## 🚀 **Quick Start for Local Testing**
 
+> **🔄 For Local Development:** Switch to the `local` branch for the complete development setup with all dependencies and configurations optimized for local testing.
 
 > **Transform your visual asset management with AI intelligence, professional-grade security, and intuitive design.** Built for photographers, agencies, content creators, and enterprises requiring sophisticated image management workflows.
 
