@@ -27,12 +27,6 @@ Enterprise-grade security with privacy levels, secure downloads, comment moderat
 ### 🎨 **AI Image Generation with ClipDrop**
 Create stunning visuals directly within the platform. Generate high-quality images from text prompts, transform existing photos, and expand your creative possibilities with state-of-the-art AI technology.
 
-### 🎭 **Custom Color Palette Engine**  
-Automatically extract and analyze color palettes from your images. Create mood boards, find complementary colors, and organize your gallery by color harmony. Perfect for designers and creative professionals.
-
-### 🔍 **Vector Search Technology**
-Revolutionary image discovery powered by semantic vector search. Find images by description, mood, or visual similarity—even if they're not tagged. Our AI understands the content and context of your images.
-
 ---
 
 ## 🛠️ **Modern Tech Stack**
@@ -85,7 +79,7 @@ cp .env.example .env
 
 # Build frontend
 ./vendor/bin/sail npm install --legacy-peer-deps
-./vendor/bin/sail npm run dev
+./vendor/bin/sail npm run build
 ```
 
 **🎯 Ready!** Visit `http://localhost` and start exploring.
@@ -109,14 +103,11 @@ CDN-ready architecture with Redis caching, queue processing, and optimized image
 
 ### **Storage Solutions**
 - **MinIO/S3 Compatible** - Self-hosted or cloud storage
-- **CDN Integration** - Global content delivery
 - **Image Processing** - Multi-format optimization (WebP, AVIF)
 - **Privacy Protection** - Automatic GPS data removal
 
 ### **AI Integration**  
 - **ClipDrop API** - Professional image generation
-- **Vector Embeddings** - Semantic search capabilities
-- **Color Analysis** - Intelligent palette extraction
 - **Machine Learning** - Continuous improvement
 
 ### **Developer Experience**
