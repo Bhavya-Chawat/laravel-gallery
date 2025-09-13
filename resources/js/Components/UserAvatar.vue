@@ -72,6 +72,7 @@
 
 <script setup>
 import { computed, ref } from 'vue'
+import { getImageUrl } from '@/utils/imageHelpers'
 
 const props = defineProps({
   user: { type: Object, required: true },
@@ -128,7 +129,7 @@ const avatarUrl = computed(() => {
     }
     
     // Generate MinIO/S3 URL
-    return `http://localhost:9000/gallery-images/${props.user.avatar_path}`
+    return getImageUrl(getImageUrl(props.user.avatar_path))
   }
   
   // Generic avatar property
@@ -136,7 +137,7 @@ const avatarUrl = computed(() => {
     if (props.user.avatar.startsWith('http')) {
       return props.user.avatar
     }
-    return `http://localhost:9000/gallery-images/${props.user.avatar}`
+    return getImageUrl(getImageUrl(props.user.avatar))
   }
   
   return null

@@ -644,7 +644,9 @@
 
 <script setup>
 import { ref, computed } from 'vue'
+import { getImageUrl } from '@/utils/imageHelpers'
 import { Head, Link, usePage } from '@inertiajs/vue3'
+import { getImageUrl } from '@/utils/imageHelpers'
 import route from 'ziggy-js'
 import {
   PhotoIcon,
@@ -743,7 +745,7 @@ const getImageUrl = (image, variant = 'medium') => {
     // For preview/thumbnail variant, try smaller sizes first
     if (variant === 'thumbnail') {
       if (image.storage_path) {
-        return `http://localhost:9000/gallery-images/${image.storage_path}`
+        return getImageUrl(getImageUrl(image.storage_path))
       }
       if (image.thumbnails && image.thumbnails.small) {
         return image.thumbnails.small
@@ -752,7 +754,7 @@ const getImageUrl = (image, variant = 'medium') => {
     
     // Try multiple URL sources
     if (image.storage_path) {
-      return `http://localhost:9000/gallery-images/${image.storage_path}`
+      return getImageUrl(getImageUrl(image.storage_path))
     }
     if (image.url) {
       return image.url

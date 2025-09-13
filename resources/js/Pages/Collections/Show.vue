@@ -312,6 +312,7 @@
 
 <script setup>
 import { ref, computed } from 'vue'
+import { getImageUrl } from '@/utils/imageHelpers'
 
 const props = defineProps({
   collection: Object,
@@ -520,7 +521,7 @@ const getImageUrl = (image) => {
   
   if (image?.storage_path) {
     // Try MinIO URL first (based on your previous setup)
-    return `http://localhost:9000/gallery-images/${image.storage_path}`
+    return getImageUrl(getImageUrl(image.storage_path))
   }
   
   // Fallback to Laravel storage

@@ -287,8 +287,10 @@
 
 <script setup>
 import { Head, Link, router } from '@inertiajs/vue3'
+import { getImageUrl } from '@/utils/imageHelpers'
 import route from 'ziggy-js'
 import { EyeIcon, PhotoIcon, FolderIcon } from '@heroicons/vue/24/outline'
+import { getImageUrl } from '@/utils/imageHelpers'
 
 import AdminLayout from '@/Layouts/AdminLayout.vue'
 import StatCard from '@/Components/Admin/StatCard.vue'
@@ -306,7 +308,7 @@ const formatDate = (date) => {
 }
 
 const getImageUrl = (image) => {
-  return `http://localhost:9000/gallery-images/${image.storage_path}`
+  return getImageUrl(getImageUrl(image.storage_path))
 }
 
 const approveImage = (image) => {

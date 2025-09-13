@@ -176,7 +176,9 @@
 
 <script setup>
 import { computed } from 'vue'
+import { getImageUrl } from '@/utils/imageHelpers'
 import { Link, router } from '@inertiajs/vue3'
+import { getImageUrl } from '@/utils/imageHelpers'
 import route from 'ziggy-js'
 import {
   EyeIcon,
@@ -229,7 +231,7 @@ const emit = defineEmits(['select', 'open'])
 const getImageUrl = (variant = 'medium') => {
   // Use direct MinIO URL since thumbnails aren't processed yet  
   if (props.image.storage_path) {
-    return `http://localhost:9000/gallery-images/${props.image.storage_path}`
+    return getImageUrl(getImageUrl(props.image.storage_path))
   }
   return props.image.url || '/images/placeholder.jpg'
 }

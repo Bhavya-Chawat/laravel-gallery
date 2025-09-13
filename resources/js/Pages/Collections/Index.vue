@@ -351,7 +351,9 @@
 
 <script setup>
 import { reactive, computed } from 'vue'
+import { getImageUrl } from '@/utils/imageHelpers'
 import { Head, Link, router } from '@inertiajs/vue3'
+import { getImageUrl } from '@/utils/imageHelpers'
 import { 
   PlusIcon, 
   FolderIcon, 
@@ -413,7 +415,7 @@ const clearFilters = () => {
 
 const getImageUrl = (image) => {
   if (image?.storage_path) {
-    return `http://localhost:9000/gallery-images/${image.storage_path}`
+    return getImageUrl(getImageUrl(image.storage_path))
   }
   return '/images/placeholder.jpg'
 }

@@ -415,7 +415,9 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
+import { getImageUrl } from '@/utils/imageHelpers'
 import { Head, Link, router, useForm } from '@inertiajs/vue3'
+import { getImageUrl } from '@/utils/imageHelpers'
 import route from 'ziggy-js'
 import { 
   PencilIcon, 
@@ -473,7 +475,7 @@ const getRoleBadgeClass = (roleSlug) => {
 }
 
 const getImageUrl = (image) => {
-  return `http://localhost:9000/gallery-images/${image.storage_path}`
+  return getImageUrl(getImageUrl(image.storage_path))
 }
 
 const toggleStatus = () => {

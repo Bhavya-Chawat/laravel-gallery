@@ -1,4 +1,4 @@
-function getImageUrl(imagePath) {
+export function getImageUrl(imagePath) {
   if (!imagePath) {
     return '/images/placeholder.jpg'
   }
@@ -13,14 +13,14 @@ function getImageUrl(imagePath) {
   }
 }
 
-function getAvatarUrl(user) {
+export function getAvatarUrl(user) {
   if (!user?.avatar_path) {
     return null
   }
   return getImageUrl(user.avatar_path)
 }
 
-function handleImageError(event, fallbackUrl = '/images/placeholder.jpg') {
+export function handleImageError(event, fallbackUrl = '/images/placeholder.jpg') {
   const img = event.target
   const currentSrc = img.src
   
@@ -30,12 +30,4 @@ function handleImageError(event, fallbackUrl = '/images/placeholder.jpg') {
   } else {
     img.src = fallbackUrl
   }
-}
-
-// Export for ES modules
-export { getImageUrl, getAvatarUrl, handleImageError }
-
-// Also support CommonJS for Node.js compatibility
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { getImageUrl, getAvatarUrl, handleImageError }
 }

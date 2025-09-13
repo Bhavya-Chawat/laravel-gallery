@@ -201,7 +201,9 @@
 
 <script setup>
 import { ref, reactive, onMounted, watch } from 'vue'
+import { getImageUrl } from '@/utils/imageHelpers'
 import { XMarkIcon, FolderIcon, PlusIcon } from '@heroicons/vue/24/outline'
+import { getImageUrl } from '@/utils/imageHelpers'
 import Modal from '@/Components/Modal.vue'
 import axios from 'axios'
 import route from 'ziggy-js'
@@ -247,7 +249,7 @@ const getCoverImageUrl = (coverImage) => {
   }
   
   if (coverImage.storage_path) {
-    return `http://localhost:9000/gallery-images/${coverImage.storage_path}`
+    return getImageUrl(getImageUrl(coverImage.storage_path))
   }
   
   if (coverImage.url) {

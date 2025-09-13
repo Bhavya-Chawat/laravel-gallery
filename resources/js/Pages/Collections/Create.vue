@@ -348,7 +348,9 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
+import { getImageUrl } from '@/utils/imageHelpers'
 import { Head, Link, useForm } from '@inertiajs/vue3'
+import { getImageUrl } from '@/utils/imageHelpers'
 import route from 'ziggy-js'
 import { 
   ChevronRightIcon,
@@ -382,7 +384,7 @@ const form = useForm({
 // Methods
 const getImageUrl = (image) => {
   if (image.storage_path) {
-    return `http://localhost:9000/gallery-images/${image.storage_path}`
+    return getImageUrl(getImageUrl(image.storage_path))
   }
   return image.url || '/images/placeholder.jpg'
 }

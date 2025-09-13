@@ -497,7 +497,9 @@
 
 <script setup>
 import { ref, computed, onMounted, onUnmounted, nextTick, watch } from 'vue'
+import { getImageUrl } from '@/utils/imageHelpers'
 import { Link, router } from '@inertiajs/vue3'
+import { getImageUrl } from '@/utils/imageHelpers'
 import route from 'ziggy-js'
 import {
   XMarkIcon,
@@ -566,7 +568,7 @@ const currentImageUrl = computed(() => {
   
   const img = currentImage.value
   if (img.storage_path) {
-    return `http://localhost:9000/gallery-images/${img.storage_path}`
+    return getImageUrl(getImageUrl(img.storage_path))
   }
   return img.url || '/images/placeholder.jpg'
 })

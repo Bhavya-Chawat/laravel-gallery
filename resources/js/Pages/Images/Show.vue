@@ -415,7 +415,9 @@
 
 <script setup>
 import { ref, computed } from 'vue'
+import { getImageUrl } from '@/utils/imageHelpers'
 import { Head, Link, router } from '@inertiajs/vue3'
+import { getImageUrl } from '@/utils/imageHelpers'
 import route from 'ziggy-js'
 import axios from 'axios'
 import {
@@ -501,7 +503,7 @@ const getImageUrl = () => {
   }
   
   if (props.image.storage_path) {
-    return `http://localhost:9000/gallery-images/${props.image.storage_path}`
+    return getImageUrl(getImageUrl(props.image.storage_path))
   }
   
   return props.image.url || '/images/placeholder.jpg'
@@ -509,7 +511,7 @@ const getImageUrl = () => {
 
 const getRelatedImageUrl = (image) => {
   if (image.storage_path) {
-    return `http://localhost:9000/gallery-images/${image.storage_path}`
+    return getImageUrl(getImageUrl(image.storage_path))
   }
   return image.url || '/images/placeholder.jpg'
 }

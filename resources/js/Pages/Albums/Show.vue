@@ -414,9 +414,12 @@
 
 <script setup>
 import { ref, computed } from 'vue'
+import { getImageUrl } from '@/utils/imageHelpers'
 import { Head, Link, router } from '@inertiajs/vue3'
+import { getImageUrl } from '@/utils/imageHelpers'
 import route from 'ziggy-js'
 import { ChevronRightIcon, PhotoIcon, PlusIcon, PencilIcon } from '@heroicons/vue/24/outline'
+import { getImageUrl } from '@/utils/imageHelpers'
 
 import AppLayout from '@/Layouts/AppLayout.vue'
 import Pagination from '@/Components/Pagination.vue'
@@ -443,7 +446,7 @@ const formatDate = (date) => {
 
 const getImageUrl = (image) => {
   if (image.storage_path) {
-    return `http://localhost:9000/gallery-images/${image.storage_path}`
+    return getImageUrl(getImageUrl(image.storage_path))
   }
   return '/images/placeholder.jpg'
 }

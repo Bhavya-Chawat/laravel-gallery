@@ -470,9 +470,12 @@
 
 <script setup>
 import { ref } from 'vue'
+import { getImageUrl } from '@/utils/imageHelpers'
 import { Head, Link, useForm, router } from "@inertiajs/vue3"
+import { getImageUrl } from '@/utils/imageHelpers'
 import route from 'ziggy-js'
 import { ChevronRightIcon } from '@heroicons/vue/24/outline'
+import { getImageUrl } from '@/utils/imageHelpers'
 
 import AppLayout from '@/Layouts/AppLayout.vue'
 import InputError from '@/Components/InputError.vue'
@@ -511,7 +514,7 @@ const form = useForm({
 
 const getImageUrl = (variant = 'medium') => {
   if (props.image.storage_path) {
-    return `http://localhost:9000/gallery-images/${props.image.storage_path}`
+    return getImageUrl(getImageUrl(props.image.storage_path))
   }
   return props.image.url || '/images/placeholder.jpg'
 }

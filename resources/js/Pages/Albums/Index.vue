@@ -379,7 +379,9 @@
 
 <script setup>
 import { ref, reactive, computed } from 'vue'
+import { getImageUrl } from '@/utils/imageHelpers'
 import { Head, Link, router, usePage } from '@inertiajs/vue3'
+import { getImageUrl } from '@/utils/imageHelpers'
 import route from 'ziggy-js'
 import { 
   PlusIcon, 
@@ -463,7 +465,7 @@ const clearFilters = () => {
 
 const getImageUrl = (image) => {
   if (image?.storage_path) {
-    return `http://localhost:9000/gallery-images/${image.storage_path}`
+    return getImageUrl(getImageUrl(image.storage_path))
   }
   return '/images/placeholder.jpg'
 }
