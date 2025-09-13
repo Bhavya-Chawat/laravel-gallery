@@ -644,7 +644,9 @@
 
 <script setup>
 import { ref, computed } from 'vue'
+import { getImageUrl } from '@/utils/imageHelpers'
 import { Head, Link, usePage } from '@inertiajs/vue3'
+import { getImageUrl } from '@/utils/imageHelpers'
 import route from 'ziggy-js'
 import {
   PhotoIcon,
@@ -736,6 +738,36 @@ const formatNumber = (number) => {
 }
 
 // Enhanced image URL function with multiple fallbacks
+const getImageUrl = (image, variant = 'medium') => {
+  if (!image) return null
+  
+  try {
+    // For preview/thumbnail variant, try smaller sizes first
+    if (variant === 'thumbnail') {
+      if (image.storage_path) {
+        return getImageUrl(getImageUrl(image.storage_path))
+      }
+      if (image.thumbnails && image.thumbnails.small) {
+        return image.thumbnails.small
+      }
+    }
+    
+    // Try multiple URL sources
+    if (image.storage_path) {
+      return getImageUrl(getImageUrl(image.storage_path))
+    }
+    if (image.url) {
+      return image.url
+    }
+    if (image.thumbnails && image.thumbnails[variant]) {
+      return image.thumbnails[variant]
+    }
+  } catch (error) {
+    console.warn('Error getting image URL:', error)
+  }
+  
+  return null
+}
 
 // Error handling functions
 const handlePreviewImageError = (event) => {

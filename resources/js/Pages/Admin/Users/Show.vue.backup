@@ -415,7 +415,9 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
+import { getImageUrl } from '@/utils/imageHelpers'
 import { Head, Link, router, useForm } from '@inertiajs/vue3'
+import { getImageUrl } from '@/utils/imageHelpers'
 import route from 'ziggy-js'
 import { 
   PencilIcon, 
@@ -472,6 +474,9 @@ const getRoleBadgeClass = (roleSlug) => {
   return classes[roleSlug] || classes.user
 }
 
+const getImageUrl = (image) => {
+  return getImageUrl(getImageUrl(image.storage_path))
+}
 
 const toggleStatus = () => {
   const action = props.user.is_active ? 'deactivate' : 'activate'

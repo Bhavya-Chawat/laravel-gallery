@@ -312,6 +312,7 @@
 
 <script setup>
 import { ref, computed } from 'vue'
+import { getImageUrl } from '@/utils/imageHelpers'
 
 const props = defineProps({
   collection: Object,
@@ -512,6 +513,25 @@ const removeFromCollection = async (imageId) => {
   }
 }
 
+const getImageUrl = (image) => {
+  // Try different image URL patterns
+  if (image?.thumbnail_url) {
+    return image.thumbnail_url
+  }
+  
+  if (image?.storage_path) {
+    // Try MinIO URL first (based on your previous setup)
+    return getImageUrl(getImageUrl(image.storage_path))
+  }
+  
+  // Fallback to Laravel storage
+  if (image?.storage_path) {
+    return `/storage/${image.storage_path}`
+  }
+  
+  // Ultimate fallback
+  return '/images/placeholder.jpg'
+}
 
 const handleImageError = (event) => {
   // Try fallback URLs when image fails to load
